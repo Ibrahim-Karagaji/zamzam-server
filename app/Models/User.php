@@ -19,6 +19,7 @@ class User extends Model
         'identity_photo',
         'phone_number',
         'position',
+        'job_position'
     ];
 
     protected $hidden = ["role", "password"];
