@@ -6,23 +6,25 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|min:3',
+            'family_name' => "required|string|min:3",
+            'email' => "required|email|unique:users,email",
+            'password' => 'required|string|min:8',
+            'user_photo' => 'required|image|mimes:jpg,jpeg,png,webp|max:1024',
+            'identity_photo' => 'required|image|mimes:jpg,jpeg,png,webp|max:1024',
+            'phone_number' => 'required|string|min:10|max:20',
+            'position' => 'required|in:repository,filed',
+            'job_position' => 'required|in:manager,worker,supervisor',
         ];
     }
 }
