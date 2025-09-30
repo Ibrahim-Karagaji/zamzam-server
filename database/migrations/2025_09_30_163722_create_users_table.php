@@ -12,13 +12,15 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("family_name");
-            $table->string("email");
+            $table->string("email")->unique();
             $table->string("password");
             $table->string("user_photo");
             $table->string("identity_photo");
             $table->string("phone_number", 20);
             $table->enum('role', ["manager", "worker", "supervisor"]);
+            $table->enum('job_position', ["manager", "worker", "supervisor"]);
             $table->enum("position", ["repository", "filed"]);
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->foreignId("hired_by")->nullable()->constrained("users");
             $table->foreignId("supervisor_id")->nullable()->constrained("users");
             $table->timestamps();
