@@ -9,14 +9,17 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('managers', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
+            $table->id();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->text("report");
+            $table->date("date");
             $table->timestamps();
         });
     }
 
-
     public function down(): void
     {
-        Schema::dropIfExists('managers');
+        Schema::dropIfExists('reports');
     }
 };
