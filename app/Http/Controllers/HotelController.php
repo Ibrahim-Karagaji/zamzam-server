@@ -7,5 +7,6 @@ use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
-    //
+public function hotel(): void{}
+
 }
